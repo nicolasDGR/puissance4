@@ -6,13 +6,13 @@
 #    By: nd-heyge <nd-heyge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/22 12:20:03 by nd-heyge          #+#    #+#              #
-#    Updated: 2014/02/23 17:39:44 by nd-heyge         ###   ########.fr        #
+#    Updated: 2014/03/07 23:18:27 by nd-heyge         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = lem-in
+NAME = puissance4
 
-SRCC = main.c parser.c collect.c check_global.c check_pipe.c check_room.c
+SRCC = main.c error.c board.c
 
 SRCO = $(SRCC:.c=.o)
 
