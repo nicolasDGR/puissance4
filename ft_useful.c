@@ -1,45 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_useful.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nd-heyge <nd-heyge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/07 21:04:50 by nd-heyge          #+#    #+#             */
-/*   Updated: 2014/03/08 14:29:44 by nd-heyge         ###   ########.fr       */
+/*   Created: 2014/03/08 13:07:22 by nd-heyge          #+#    #+#             */
+/*   Updated: 2014/03/08 13:10:58 by nd-heyge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/includes/puissance4.h"
 
-int		whoplaysfirst(void)
-{
-	int	player;
+/*
+** To count the number of powers of 10
+*/
 
-	srand(time(NULL));
-	player = rand() % 2;
-	if (player)
-		ft_putendl("It's for YOU to start!");
-	else
-		ft_putendl("It's for ME to start!");
-	return (player);
+int		power_ten(int nbr)
+{
+	int		i;
+
+	i = 0;
+	while (nbr >= 10)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	return (i);
 }
 
-int		main(int ac, char **av)
-{
-	int		height;
-	int		width;
-	int		player;
+/*
+** To check if the character's string is composed numbers
+*/
 
-	(void)av;
-	if (error_usage(ac) == -1)
+int		ft_is_number(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isdigit(str[i]) == 0)
+			break ;
+		i++;
+	}
+	if (i != (int)ft_strlen(str))
 		return (-1);
-	ft_putendl("\n\tWelcome to puissance 4");
-	ft_putendl("");
-	init_gameboard(&width, &height);
-	put_gameboard(width, height);
-	player = whoplaysfirst();
 	return (0);
-}
-turn (0);
 }
