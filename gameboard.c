@@ -6,7 +6,7 @@
 /*   By: nd-heyge <nd-heyge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 22:48:34 by nd-heyge          #+#    #+#             */
-/*   Updated: 2014/03/08 13:10:03 by nd-heyge         ###   ########.fr       */
+/*   Updated: 2014/03/09 16:37:25 by nd-heyge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 ** To display numbers of the gamboard
 */
 
-void	putnbr_gameboard(int width)
+void	putnbr_gameboard(t_p4 *p4)
 {
 	int		i;
 
 	i = 0;
 	ft_putstr("\n\t");
-	while (i < width)
+	while (i < p4->width)
 	{
 		ft_putnbr(i);
 		ft_putstr(" ");
-		if (power_ten(i + 1) == 0 && power_ten(width) == 1)
+		if (power_ten(i + 1) == 0 && power_ten(p4->width) == 1)
 			ft_putstr(" ");
 		i++;
 	}
@@ -34,64 +34,50 @@ void	putnbr_gameboard(int width)
 }
 
 /*
+** To display a space if the column is a tens, hundreds...
+*/
+void	put_multiple_ten(t_p4 *p4, int i)
+{
+	int		puiss;
+
+	if (power_ten(i + 1) == 0 && power_ten(p4->width) == 1)
+		ft_putstr(" ");
+	puiss = 0;
+	while (puiss < power_ten(i + 1))
+	{
+		ft_putstr(" ");
+		puiss++;
+	}
+}
+
+/*
 ** To display the gameboard
 */
 
-void	put_gameboard(int width, int height)
+void	put_gameboard(t_p4 *p4)
 {
 	int		i;
 	int		j;
-	int		puiss;
 
 	j = 0;
-	while (j < height)
+	while (j < p4->height)
 	{
 		i = 0;
 		ft_putstr("\n\t");
-		while (i < width)
+		while (i < p4->width)
 		{
-			ft_putstr(". ");
-			if (power_ten(i + 1) == 0 && power_ten(width) == 1)
-				ft_putstr(" ");
-			puiss = 0;
-			while (puiss < power_ten(i + 1))
+			ft_putendl(&p4->gameboard[j][i]);
+			if (p4->gameboard[j][i] == '\0')
+				ft_putstr(". ");
+			else
 			{
+				ft_putstr(&p4->gameboard[j][i]);
 				ft_putstr(" ");
-				puiss++;
 			}
+			put_multiple_ten(p4, i);
 			i++;
 		}
 		j++;
 	}
-	putnbr_gameboard(width);
-}
-
-/*
-** To initialize the gameboard according to the entries of player
-*/
-
-void	init_gameboard(int *width, int *height)
-{
-	char	*line;
-
-	while (42)
-	{
-		ft_putstr("how many columns to your gameboard, do you ?  ");
-		get_next_line(0, &line);
-		*width = ft_atoi(line);
-		if (ft_is_number(line) == 0 && *width >= 6)
-		{
-			free(line);
-			ft_putstr("how many lines to your gameboard, do you ?  ");
-			get_next_line(0, &line);
-			*height = ft_atoi(line);
-			if (ft_is_number(line) == 0 && *height >= 7)
-				break ;
-			else
-				put_error_sizeboard("lines", 7);
-		}
-		else
-			put_error_sizeboard("columns", 6);
-	}
-	free(line);
+	putnbr_gameboard(p4);
 }

@@ -6,7 +6,7 @@
 /*   By: nd-heyge <nd-heyge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 21:18:39 by nd-heyge          #+#    #+#             */
-/*   Updated: 2014/03/07 23:19:22 by nd-heyge         ###   ########.fr       */
+/*   Updated: 2014/03/09 16:33:56 by nd-heyge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,51 @@
 # define PUISSANCE4_H
 
 # include "libft.h"
+# include <time.h>
+
+# define PLAYER	1
+# define CPU		0
 
 /*
-** main.c
+** To handle display gameboard
+** gameboard[COLUMN][LINE]
 */
 
+typedef struct		s_p4
+{
+	char			**gameboard;
+	int				width;
+	int				height;
+}					t_p4;
+
+/*
+** player.c
+*/
+
+void	add_piece(t_p4 *, int);
+void	read_move(t_p4 *);
+void	player_start(t_p4 *, int);
+void	computer_start(t_p4 *, int);
+
+/*
+** ft_useful.c
+*/
+
+int		power_ten(int);
 int		ft_is_number(char *);
 
 /*
 ** error.c
 */
 
-void	put_error_sizeboard(char *, int);
-int		error_usage(int);
+int		error_usage(int, char **);
 
 /*
-** board.c
+** gameboard.c
 */
 
-void	init_gameboard(int *, int *);
-void	put_gameboard(int, int);
+void	putnbr_gameboard(t_p4 *);
+t_p4	*init_gameboard(t_p4 *);
+void	put_gameboard(t_p4 *);
 
 #endif /* !PUISSANCE4_H */

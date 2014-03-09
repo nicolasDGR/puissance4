@@ -6,13 +6,13 @@
 #    By: nd-heyge <nd-heyge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/22 12:20:03 by nd-heyge          #+#    #+#              #
-#    Updated: 2014/03/08 13:27:17 by nd-heyge         ###   ########.fr        #
+#    Updated: 2014/03/09 16:32:01 by nd-heyge         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = puissance4
 
-SRCC = main.c error.c gameboard.c ft_useful.c
+SRCC = main.c error.c gameboard.c ft_useful.c player.c
 
 SRCO = $(SRCC:.c=.o)
 
